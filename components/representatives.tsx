@@ -75,6 +75,9 @@ const representatives = [
 
 export function Representatives() {
   const lastRowCount = representatives.length % 3;
+  const whatsappMessage = encodeURIComponent(
+    "Olá! Gostaria de solicitar um orçamento de chopp para meu evento."
+  );
 
   return (
     <section className="py-24 bg-background">
@@ -95,8 +98,11 @@ export function Representatives() {
         {/* Representatives Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
           {representatives.map((rep, index) => (
-            <div
+            <a
               key={index}
+              href={`https://wa.me/${rep.phone.replace(/\D/g, "")}?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 lg:col-span-2 ${
                 lastRowCount === 2 && index === representatives.length - 2
                   ? "lg:col-start-2"
@@ -105,7 +111,7 @@ export function Representatives() {
                 lastRowCount === 2 && index === representatives.length - 1
                   ? "lg:col-start-4"
                   : ""
-              }`}
+              } block cursor-pointer`}
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
@@ -122,7 +128,7 @@ export function Representatives() {
                 <Phone className="w-5 h-5 text-primary" />
                 <span className="text-foreground">{rep.phone}</span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
