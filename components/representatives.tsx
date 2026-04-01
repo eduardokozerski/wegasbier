@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Phone, User } from "lucide-react";
 
 const representatives = [
@@ -74,9 +77,43 @@ const representatives = [
 ];
 
 export function Representatives() {
-  const lastRowCount = representatives.length % 3;
+  const [isExpanded, setIsExpanded] = useState(false);
   const whatsappMessage = encodeURIComponent(
-    "Olá! Gostaria de solicitar um orçamento de chopp para meu evento."
+    "Olá! Gostaria de solicitar um orçamento de chopp para meu evento.",
+  );
+  const firstRepresentatives = representatives.slice(0, 3);
+  const remainingRepresentatives = representatives.slice(3);
+
+  const renderRepresentativeCard = (
+    rep: (typeof representatives)[number],
+    index: number,
+    total: number,
+  ) => (
+    <a
+      key={`${rep.name}-${index}`}
+      href={`https://wa.me/${rep.phone.replace(/\D/g, "")}?text=${whatsappMessage}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 block cursor-pointer lg:col-span-2 ${
+        total % 3 === 2 && index === total - 2 ? "lg:col-start-2" : ""
+      } ${total % 3 === 2 && index === total - 1 ? "lg:col-start-4" : ""}`}
+    >
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+          <User className="w-7 h-7 text-primary" />
+        </div>
+        <div>
+          <h3 className="font-serif text-xl font-bold text-foreground">
+            {rep.name}
+          </h3>
+          <p className="text-sm text-muted-foreground">{rep.region}</p>
+        </div>
+      </div>
+      <div className="flex items-center gap-3">
+        <Phone className="w-5 h-5 text-primary" />
+        <span className="text-foreground">{rep.phone}</span>
+      </div>
+    </a>
   );
 
   return (
@@ -94,42 +131,40 @@ export function Representatives() {
             Entre em contato com o representante da sua região
           </p>
         </div>
-
-        {/* Representatives Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
-          {representatives.map((rep, index) => (
-            <a
-              key={index}
-              href={`https://wa.me/${rep.phone.replace(/\D/g, "")}?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`p-8 rounded-2xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 lg:col-span-2 ${
-                lastRowCount === 2 && index === representatives.length - 2
-                  ? "lg:col-start-2"
-                  : ""
-              } ${
-                lastRowCount === 2 && index === representatives.length - 1
-                  ? "lg:col-start-4"
-                  : ""
-              } block cursor-pointer`}
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                  <User className="w-7 h-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-foreground">
-                    {rep.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{rep.region}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary" />
-                <span className="text-foreground">{rep.phone}</span>
-              </div>
-            </a>
-          ))}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          {representatives.map((rep, index) =>
+            renderRepresentativeCard(rep, index, representatives.length),
+          )}
+        </div>
+        <div className="md:hidden max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 gap-8">
+            {firstRepresentatives.map((rep, index) =>
+              renderRepresentativeCard(rep, index, firstRepresentatives.length),
+            )}
+          </div>
+          <div
+            className={`grid grid-cols-1 gap-8 overflow-hidden transition-all duration-500 ease-in-out ${
+              isExpanded
+                ? "max-h-[4000px] opacity-100 mt-6"
+                : "max-h-0 opacity-0 mt-0"
+            }`}
+          >
+            {remainingRepresentatives.map((rep, index) =>
+              renderRepresentativeCard(
+                rep,
+                index,
+                remainingRepresentatives.length,
+              ),
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsExpanded((prevState) => !prevState)}
+            className="mt-6 w-full rounded-xl border border-border/50 bg-card px-4 py-3 text-center text-sm font-medium text-foreground hover:border-primary/30 transition-colors"
+            aria-expanded={isExpanded}
+          >
+            {isExpanded ? "Mostrar menos" : "Mostrar todos"}
+          </button>
         </div>
 
         <p className="text-center text-muted-foreground mt-8 text-sm">
