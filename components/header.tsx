@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Início", href: "#inicio" },
@@ -12,21 +12,22 @@ const navItems = [
   { label: "Kombi Bier", href: "#kombi" },
   { label: "Cobertura", href: "#cobertura" },
   { label: "Contato", href: "#contato" },
-]
+];
 
-const WHATSAPP_URL = "https://wa.me/5531997051109?text=Olá! Gostaria de solicitar um orçamento de chopp para meu evento."
+const WHATSAPP_URL =
+  "https://wa.me/5531997051109?text=Olá! Gostaria de solicitar um orçamento de chopp para meu evento.";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="relative h-10 w-32 md:h-12 md:w-40">
+          <Link href="/" className="relative h-10 w-32 md:h-14 md:w-40">
             <Image
-              src="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/logo.png"
+              src="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/logo-novo.png"
               alt="Wegas Bier"
               fill
               className="object-contain"
@@ -49,7 +50,10 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              asChild
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Pedir Orçamento
               </a>
@@ -80,8 +84,15 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button asChild className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90">
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <Button
+                asChild
+                className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Pedir Orçamento
                 </a>
               </Button>
@@ -90,5 +101,5 @@ export function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
