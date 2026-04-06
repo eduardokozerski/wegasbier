@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
 const products = [
   {
     name: "Chopp Pilsen",
+    image: "/pilsen.png",
     description: "Leve, refrescante e de fácil degustação. Nosso carro-chefe.",
     abv: "4,8%",
     badge: "Mais pedido",
@@ -28,6 +30,7 @@ const products = [
   },
   {
     name: "Chopp Red Ale",
+    image: "/red-ale.png",
     description: "Maltado com notas de caramelo e tostado sutil.",
     abv: "5,2%",
     badge: null,
@@ -43,6 +46,7 @@ const products = [
   },
   {
     name: "Chopp IPA",
+    image: "/ipa.png",
     description: "Intenso amargor e aroma cítrico marcante.",
     abv: "6,5%",
     badge: null,
@@ -60,6 +64,7 @@ const products = [
   },
   {
     name: "Chopp Blonde",
+    image: "/blonde-ale.png",
     description: "Corpo médio com notas frutadas e final seco.",
     abv: "5,0%",
     badge: null,
@@ -75,6 +80,7 @@ const products = [
   },
   {
     name: "Chopp de Vinho",
+    image: "/vinho.png",
     description: "Uvas selecionadas com um toque refrescante único.",
     abv: "4,5%",
     badge: "Especial",
@@ -121,10 +127,13 @@ export function Products() {
                 )}
               </div>
 
-              {/* Glass Icon */}
-              <div className="w-16 h-24 mx-auto mb-6 relative">
-                <div className="absolute inset-0 bg-primary/10 rounded-b-full rounded-t-lg border-2 border-primary/20" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-3 bg-primary/20 rounded-b-full" />
+              <div className="relative w-full h-56 md:h-52 mb-6 overflow-hidden rounded-xl">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
 
               <h3 className="font-serif text-lg font-bold text-foreground text-center mb-2">

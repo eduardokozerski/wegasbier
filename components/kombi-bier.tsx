@@ -1,8 +1,9 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { MessageCircle, Sparkles } from "lucide-react"
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { MessageCircle, Sparkles } from "lucide-react";
 
-const WHATSAPP_URL = "https://wa.me/5531997051109?text=Olá! Gostaria de contratar a Kombi Bier para meu evento."
+const WHATSAPP_URL =
+  "https://wa.me/5531997051109?text=Olá! Gostaria de contratar a Kombi Bier para meu evento.";
 
 export function KombiBier() {
   return (
@@ -17,9 +18,9 @@ export function KombiBier() {
           className="w-full h-full object-cover opacity-30"
           poster="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/kombi.png"
         >
-          <source 
-            src="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/wegas-video.mp4" 
-            type="video/mp4" 
+          <source
+            src="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/wegas-video.mp4"
+            type="video/mp4"
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/80" />
@@ -28,7 +29,7 @@ export function KombiBier() {
       <div className="relative z-10 container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 flex flex-col items-start text-left w-full max-w-xl mx-auto lg:ml-auto lg:mr-0">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm text-primary font-medium">Destaque</span>
@@ -39,9 +40,10 @@ export function KombiBier() {
               <span className="text-primary">Vai Até Você</span>
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-lg">
-              Nossa Kombi leva o melhor chopp artesanal direto para o seu evento particular. 
-              Uma experiência única que transforma qualquer celebração em um momento inesquecível.
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
+              Nossa Kombi leva o melhor chopp artesanal direto para o seu evento
+              particular. Uma experiência única que transforma qualquer
+              celebração em um momento inesquecível.
             </p>
 
             <ul className="space-y-3 mb-8">
@@ -51,19 +53,27 @@ export function KombiBier() {
                 "Chopps frescos e cremosos",
                 "Ideal para festas e eventos",
               ].map((item, index) => (
-                <li key={index} className="flex items-center gap-3 text-foreground">
+                <li
+                  key={index}
+                  className="flex items-center gap-3 text-foreground"
+                >
                   <span className="w-2 h-2 rounded-full bg-primary" />
                   {item}
                 </li>
               ))}
             </ul>
 
-            <Button 
-              asChild 
-              size="lg" 
+            <Button
+              asChild
+              size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6 rounded-full"
             >
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
                 <MessageCircle size={20} />
                 Contratar Kombi Bier
               </a>
@@ -85,5 +95,5 @@ export function KombiBier() {
         </div>
       </div>
     </section>
-  )
+  );
 }

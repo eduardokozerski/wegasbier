@@ -5,11 +5,11 @@ import Image from "next/image"
 const eventTypes = [
   {
     label: "Festas Open Bar",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80",
+    image: "/open-bar.jpg",
   },
   {
     label: "Festivais",
-    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80",
+    image: "/festivais.jpg",
   },
   {
     label: "Eventos Privados",

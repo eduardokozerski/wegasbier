@@ -3,89 +3,117 @@
 import { useState } from "react";
 import { Phone, User } from "lucide-react";
 
+type Representative = {
+  region: string;
+  name: string;
+  phone: string;
+  cities: string[];
+};
+
 const representatives = [
   {
     region: "Teixeiras, Pedra do Anta, Guaraciaba e Região",
     name: "Júnior Zaidan",
     phone: "+55 31 9622-8582",
+    cities: ["Teixeiras", "Pedra do Anta", "Guaraciaba"],
   },
   {
     region: "Viçosa e Coimbra",
     name: "Wegas Viçosa",
     phone: "+55 31 9908-5917",
+    cities: ["Viçosa", "Coimbra"],
   },
   {
     region: "Paula Cândido, Senador Firmino e Divinésia",
     name: "Glauber Santos",
     phone: "+55 32 9833-2487",
+    cities: ["Paula Cândido", "Senador Firmino", "Divinésia"],
   },
   {
     region: "Guidoval, Ubá e Região",
     name: "Vitor Vieira",
     phone: "+55 32 9905-9835",
+    cities: ["Guidoval", "Ubá"],
   },
   {
     region: "São Geraldo, Visconde do Rio Branco e Região",
     name: "Glenio Teixeira",
     phone: "+55 32 9836-5772",
+    cities: ["São Geraldo", "Visconde do Rio Branco"],
   },
   {
     region: "Canaã, Araponga, São Bento e Região",
     name: "Grasiele",
     phone: "+55 31 9668-7815",
+    cities: ["Canaã", "Araponga", "São Bento"],
   },
   {
     region: "Porto Firme e Piranga",
     name: "Bruno Paiva",
     phone: "+55 31 9851-7964",
+    cities: ["Porto Firme", "Piranga"],
   },
   {
     region: "Conselheiro Lafaiete e Região",
     name: "Antonio",
     phone: "+55 31 9720-7558",
+    cities: ["Conselheiro Lafaiete"],
   },
   {
     region: "Presidente Bernardes, Brás Pires e Senador Firmino",
     name: "Paulo Henrique",
     phone: "+55 31 7501-4919",
+    cities: ["Presidente Bernardes", "Brás Pires", "Senador Firmino"],
   },
   {
     region: "Ponte Nova",
     name: "Marlon Luiz",
     phone: "+55 31 9883-8909",
+    cities: ["Ponte Nova"],
   },
   {
     region: "Rio Pomba",
     name: "José Antonio",
     phone: "+55 32 8885-0915",
+    cities: ["Rio Pomba"],
   },
   {
     region: "Ubá",
     name: "Celsinho",
     phone: "+55 31 8871-0731",
+    cities: ["Ubá"],
   },
   {
     region: "Miraí",
     name: "Anderson",
     phone: "+55 31 9527-9451",
+    cities: ["Miraí"],
   },
   {
     region: "São Miguel",
     name: "Warley",
     phone: "+55 31 8464-4281",
+    cities: ["São Miguel"],
   },
-];
+] satisfies Representative[];
 
 export function Representatives() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const cities = Array.from(
+    new Set(representatives.flatMap((representative) => representative.cities)),
+  ).sort((firstCity, secondCity) => firstCity.localeCompare(secondCity, "pt-BR"));
+  const [selectedCity, setSelectedCity] = useState<string>("Todas");
   const whatsappMessage = encodeURIComponent(
     "Olá! Gostaria de solicitar um orçamento de chopp para meu evento.",
   );
-  const firstRepresentatives = representatives.slice(0, 3);
-  const remainingRepresentatives = representatives.slice(3);
+  const filteredRepresentatives =
+    selectedCity === "Todas"
+      ? representatives
+      : representatives.filter((representative) =>
+          representative.cities.includes(selectedCity),
+        );
 
   const renderRepresentativeCard = (
-    rep: (typeof representatives)[number],
+    rep: Representative,
     index: number,
     total: number,
   ) => (
@@ -131,40 +159,37 @@ export function Representatives() {
             Entre em contato com o representante da sua região
           </p>
         </div>
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
-          {representatives.map((rep, index) =>
-            renderRepresentativeCard(rep, index, representatives.length),
-          )}
-        </div>
-        <div className="md:hidden max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 gap-8">
-            {firstRepresentatives.map((rep, index) =>
-              renderRepresentativeCard(rep, index, firstRepresentatives.length),
-            )}
-          </div>
-          <div
-            className={`grid grid-cols-1 gap-8 overflow-hidden transition-all duration-500 ease-in-out ${
-              isExpanded
-                ? "max-h-[4000px] opacity-100 mt-6"
-                : "max-h-0 opacity-0 mt-0"
-            }`}
-          >
-            {remainingRepresentatives.map((rep, index) =>
-              renderRepresentativeCard(
-                rep,
-                index,
-                remainingRepresentatives.length,
-              ),
-            )}
-          </div>
+        <div className="flex flex-wrap justify-center gap-3 max-w-6xl mx-auto mb-10">
           <button
             type="button"
-            onClick={() => setIsExpanded((prevState) => !prevState)}
-            className="mt-6 w-full rounded-xl border border-border/50 bg-card px-4 py-3 text-center text-sm font-medium text-foreground hover:border-primary/30 transition-colors"
-            aria-expanded={isExpanded}
+            onClick={() => setSelectedCity("Todas")}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              selectedCity === "Todas"
+                ? "bg-primary text-primary-foreground"
+                : "bg-card border border-border/50 text-foreground hover:border-primary/30"
+            }`}
           >
-            {isExpanded ? "Mostrar menos" : "Mostrar todos"}
+            Todas
           </button>
+          {cities.map((city) => (
+            <button
+              key={city}
+              type="button"
+              onClick={() => setSelectedCity(city)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                selectedCity === city
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-card border border-border/50 text-foreground hover:border-primary/30"
+              }`}
+            >
+              {city}
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          {filteredRepresentatives.map((rep, index) =>
+            renderRepresentativeCard(rep, index, filteredRepresentatives.length),
+          )}
         </div>
 
         <p className="text-center text-muted-foreground mt-8 text-sm">
