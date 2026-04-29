@@ -30,10 +30,10 @@ const representatives = [
     cities: ["Paula Cândido", "Senador Firmino", "Divinésia"],
   },
   {
-    region: "Guidoval, Ubá e Região",
+    region: "Guidoval e Região",
     name: "Vitor Vieira",
     phone: "+55 32 9905-9835",
-    cities: ["Guidoval", "Ubá"],
+    cities: ["Guidoval"],
   },
   {
     region: "São Geraldo, Visconde do Rio Branco e Região",
@@ -46,12 +46,6 @@ const representatives = [
     name: "Grasiele",
     phone: "+55 31 9668-7815",
     cities: ["Canaã", "Araponga", "São Bento"],
-  },
-  {
-    region: "Porto Firme e Piranga",
-    name: "Bruno Paiva",
-    phone: "+55 31 9851-7964",
-    cities: ["Porto Firme", "Piranga"],
   },
   {
     region: "Conselheiro Lafaiete e Região",
@@ -78,8 +72,8 @@ const representatives = [
     cities: ["Rio Pomba"],
   },
   {
-    region: "Ubá",
-    name: "Celsinho",
+    region: "Ubá e Região",
+    name: "Rafael Gandra",
     phone: "+55 31 8871-0731",
     cities: ["Ubá"],
   },
@@ -100,7 +94,9 @@ const representatives = [
 export function Representatives() {
   const cities = Array.from(
     new Set(representatives.flatMap((representative) => representative.cities)),
-  ).sort((firstCity, secondCity) => firstCity.localeCompare(secondCity, "pt-BR"));
+  ).sort((firstCity, secondCity) =>
+    firstCity.localeCompare(secondCity, "pt-BR"),
+  );
   const [selectedCity, setSelectedCity] = useState<string>("Todas");
   const whatsappMessage = encodeURIComponent(
     "Olá! Gostaria de solicitar um orçamento de chopp para meu evento.",
@@ -188,7 +184,11 @@ export function Representatives() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
           {filteredRepresentatives.map((rep, index) =>
-            renderRepresentativeCard(rep, index, filteredRepresentatives.length),
+            renderRepresentativeCard(
+              rep,
+              index,
+              filteredRepresentatives.length,
+            ),
           )}
         </div>
 
