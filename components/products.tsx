@@ -116,7 +116,7 @@ export function Products() {
           {products.map((product, index) => (
             <div
               key={index}
-              className={`relative group p-6 rounded-2xl border border-border/50 bg-gradient-to-b ${product.color} hover:border-primary/30 transition-all duration-300 flex flex-col h-full min-h-[380  px]`}
+              className={`relative group p-6 rounded-2xl border border-border/50 bg-gradient-to-b ${product.color} hover:border-primary/30 transition-all duration-300 flex flex-col h-full min-h-[380px]`}
             >
               {/* Badge placeholder - always reserves space */}
               <div className="h-6 mb-2">

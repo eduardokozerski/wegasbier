@@ -85,7 +85,7 @@ export function KombiBier() {
             <div className="relative aspect-square max-w-lg mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-transparent" />
               <Image
-                src="https://raw.githubusercontent.com/eduardokozerski/wegasbier/main/kombi.png"
+                src="/kombi.png"
                 alt="Kombi Bier Wegas"
                 fill
                 className="object-contain rounded-3xl"

@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { TrustIndicators } from "@/components/trust-indicators"
 import { Products } from "@/components/products"
+import { Growlers } from "@/components/growlers"
 import { UseCases } from "@/components/use-cases"
 import { KombiBier } from "@/components/kombi-bier"
 import { Differentials } from "@/components/differentials"
@@ -19,6 +20,7 @@ export default function Home() {
       <Hero />
       <TrustIndicators />
       <Products />
+      <Growlers />
       <UseCases />
       <KombiBier />
       <Differentials />
