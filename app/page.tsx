@@ -1,17 +1,18 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { TrustIndicators } from "@/components/trust-indicators"
-import { Products } from "@/components/products"
-import { Growlers } from "@/components/growlers"
-import { UseCases } from "@/components/use-cases"
-import { KombiBier } from "@/components/kombi-bier"
-import { Differentials } from "@/components/differentials"
-import { Coverage } from "@/components/coverage"
-import { Representatives } from "@/components/representatives"
-import { Location } from "@/components/location"
-import { FinalCTA } from "@/components/final-cta"
-import { Footer } from "@/components/footer"
-import { WhatsAppButton } from "@/components/whatsapp-button"
+import { Header } from "@/components/header";
+import { Hero } from "@/components/hero";
+import { TrustIndicators } from "@/components/trust-indicators";
+import { Products } from "@/components/products";
+import { Ultra } from "@/components/ultra";
+import { Growlers } from "@/components/growlers";
+import { UseCases } from "@/components/use-cases";
+import { KombiBier } from "@/components/kombi-bier";
+import { Differentials } from "@/components/differentials";
+import { Coverage } from "@/components/coverage";
+import { Representatives } from "@/components/representatives";
+import { Location } from "@/components/location";
+import { FinalCTA } from "@/components/final-cta";
+import { Footer } from "@/components/footer";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <TrustIndicators />
       <Products />
+      <Ultra />
       <Growlers />
       <UseCases />
       <KombiBier />
@@ -31,5 +33,5 @@ export default function Home() {
       <Footer />
       <WhatsAppButton />
     </main>
-  )
+  );
 }

@@ -30,7 +30,7 @@ const products = [
   },
   {
     name: "Chopp Red Ale",
-    image: "/red-ale.png",
+    image: "/redale.png",
     description: "Maltado com notas de caramelo e tostado sutil.",
     abv: "5,2%",
     badge: null,
@@ -64,7 +64,7 @@ const products = [
   },
   {
     name: "Chopp Blonde",
-    image: "/blonde-ale.png",
+    image: "/blonde.png",
     description: "Corpo médio com notas frutadas e final seco.",
     abv: "5,0%",
     badge: null,
