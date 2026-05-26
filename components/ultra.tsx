@@ -88,7 +88,7 @@ export function Ultra() {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">
-                *Por 330ml. Valores aproximados.
+                *Por 335ml. Valores aproximados.
               </p>
             </div>
           </div>
